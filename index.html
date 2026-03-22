@@ -113,22 +113,23 @@
     flex: 1; display: flex; flex-direction: column;
     height: calc(100vh - 65px);
     overflow: hidden;
+    min-height: 0;
   }
 
   /* ── Hero strip ── */
   .hero-strip {
     text-align: center;
-    padding: 28px 20px 16px;
+    padding: 16px 20px 10px;
     flex-shrink: 0;
   }
   .hero-strip h1 {
     font-family: 'Unbounded', sans-serif;
-    font-weight: 900; font-size: clamp(1.4rem, 3vw, 2.4rem);
+    font-weight: 900; font-size: clamp(1.2rem, 2.5vw, 2rem);
     letter-spacing: -0.04em; line-height: 1.15;
     background: linear-gradient(135deg, #e8e8f0 0%, #7b4fff 60%, #ff4f9a 100%);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
   }
   .hero-strip p {
     color: var(--muted); font-size: 0.85rem; max-width: 400px; margin: 0 auto;
@@ -150,6 +151,7 @@
     display: flex; flex-direction: column; gap: 16px;
     padding: 8px 0 16px;
     min-height: 0;
+    max-height: 100%;
     scrollbar-width: thin; scrollbar-color: rgba(123,79,255,0.4) transparent;
   }
   .messages::-webkit-scrollbar { width: 5px; }
