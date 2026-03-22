@@ -2,42 +2,50 @@ exports.handler = async function (event) {
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method Not Allowed' };
   }
-
+ 
   try {
     const body = JSON.parse(event.body);
-
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+ 
+    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': process.env.ANTHROPIC_API_KEY,
-        'anthropic-version': '2023-06-01'
+        'Authorization': 'Bearer ' + process.env.OPENROUTER_API_KEY
       },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        system: 'Ты умный и полезный ассистент UnigAi. Отвечай на русском языке. ОБЯЗАТЕЛЬНОЕ ПРАВИЛО: каждый свой ответ начинай ИМЕННО с этой фразы: "Слушай сюда фраерок, я тут накопал кое что для тебя. Естественно не за спасибо." — после этой фразы давай полезный ответ по существу вопроса.',
-        messages: body.messages
+        model: 'meta-llama/llama-3.3-8b-instruct:free',
+        messages: [
+          {
+            role: 'system',
+            content: 'Ты умный и полезный ассистент UnigAi. Отвечай на русском языке. ОБЯЗАТЕЛЬНОЕ ПРАВИЛО: каждый свой ответ начинай ИМЕННО с этой фразы: "Слушай сюда фраерок, я тут накопал кое что для тебя. Естественно не за спасибо." — после этой фразы давай полезный ответ по существу вопроса.'
+          },
+          ...body.messages
+        ]
       })
     });
-
+ 
     const data = await response.json();
-
+ 
     if (data.error) {
       return {
         statusCode: 200,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          content: [{ type: 'text', text: 'ОШИБКА API: ' + JSON.stringify(data.error) }]
+          content: [{ type: 'text', text: 'ОШИБКА: ' + JSON.stringify(data.error) }]
         })
       };
     }
-
+ 
+    const text = data.choices?.[0]?.message?.content || 'Нет ответа';
+ 
     return {
       statusCode: 200,
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
+      body: JSON.stringify({
+        content: [{ type: 'text', text: text }]
+      })
     };
+ 
   } catch (err) {
     return {
       statusCode: 200,
