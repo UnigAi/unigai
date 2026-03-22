@@ -10,7 +10,7 @@ export async function onRequestPost(context) {
         'Authorization': 'Bearer ' + apiKey
       },
       body: JSON.stringify({
-        model: 'openrouter/auto',
+        model: 'openrouter/auto:free',
         messages: [
           {
             role: 'system',
