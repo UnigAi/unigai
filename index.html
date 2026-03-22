@@ -445,7 +445,7 @@
   async function askClaude(userText) {
     conversationHistory.push({ role: 'user', content: userText });
 
-    const response = await fetch('/.netlify/functions/chat', {
+    const response = await fetch('/functions/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ messages: conversationHistory })
