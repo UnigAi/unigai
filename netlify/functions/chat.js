@@ -2,10 +2,10 @@ exports.handler = async function (event) {
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method Not Allowed' };
   }
- 
+
   try {
     const body = JSON.parse(event.body);
- 
+
     const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',
       headers: {
@@ -13,7 +13,7 @@ exports.handler = async function (event) {
         'Authorization': 'Bearer ' + process.env.OPENROUTER_API_KEY
       },
       body: JSON.stringify({
-        model: 'meta-llama/llama-3.3-8b-instruct:free',
+        model: 'openrouter/free',
         messages: [
           {
             role: 'system',
@@ -23,9 +23,9 @@ exports.handler = async function (event) {
         ]
       })
     });
- 
+
     const data = await response.json();
- 
+
     if (data.error) {
       return {
         statusCode: 200,
@@ -35,9 +35,9 @@ exports.handler = async function (event) {
         })
       };
     }
- 
+
     const text = data.choices?.[0]?.message?.content || 'Нет ответа';
- 
+
     return {
       statusCode: 200,
       headers: { 'Content-Type': 'application/json' },
@@ -45,7 +45,7 @@ exports.handler = async function (event) {
         content: [{ type: 'text', text: text }]
       })
     };
- 
+
   } catch (err) {
     return {
       statusCode: 200,
