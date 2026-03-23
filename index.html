@@ -339,14 +339,12 @@
   <div class="chat-wrap">
     <div class="messages" id="messages">
       <div class="empty-state" id="emptyState">
-        <div class="empty-icon">🤖</div>
-        <h3>UnigAi готов к работе</h3>
-        <p>Начните диалог — введите ваш вопрос ниже</p>
+              <p>Начните диалог — введите ваш вопрос ниже</p>
         <div class="suggestions">
-          <div class="suggestion-chip" onclick="fillInput(this)">Как мне улучшить жизнь?</div>
-          <div class="suggestion-chip" onclick="fillInput(this)">Что думаешь о моей идее?</div>
-          <div class="suggestion-chip" onclick="fillInput(this)">Помоги разобраться в ситуации</div>
-          <div class="suggestion-chip" onclick="fillInput(this)">Посоветуй что-нибудь</div>
+          <div class="suggestion-chip" onclick="fillInput(this)">Кто по жизни?</div>
+          <div class="suggestion-chip" onclick="fillInput(this)">Вилкой в глаз или...?</div>
+          <div class="suggestion-chip" onclick="fillInput(this)">Есть базар, надо перетереть</div>
+          <div class="suggestion-chip" onclick="fillInput(this)">Собери братву, сегодня стрелка</div>
         </div>
       </div>
     </div>
@@ -462,7 +460,7 @@
         messages: [
           {
             role: 'system',
-            content: 'Ты умный и полезный ассистент UnigAi. Отвечай на русском языке. ОБЯЗАТЕЛЬНОЕ ПРАВИЛО: каждый свой ответ начинай ИМЕННО с этой фразы: "Слушай сюда фраерок, я тут накопал кое что для тебя. Естественно не за спасибо." — после этой фразы давай полезный ответ по существу вопроса.'
+            content: 'Ты умный и полезный ассистент UnigAi. Отвечай на русском языке. 
           },
           ...conversationHistory
         ]
