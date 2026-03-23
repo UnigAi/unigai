@@ -176,14 +176,13 @@
     align-items: center; justify-content: center; gap: 14px;
     color: var(--muted); text-align: center; padding: 20px;
   }
-  .empty-icon {
-    width: 56px; height: 56px;
-    background: linear-gradient(135deg, rgba(123,79,255,0.2), rgba(255,79,154,0.15));
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 26px;
+  .empty-icon-svg {
+    width: 120px; height: 120px;
     animation: pulse 3s ease-in-out infinite;
+  }
+  .empty-icon-svg svg {
+    width: 100%; height: 100%;
+    filter: drop-shadow(0 0 18px rgba(123,79,255,0.5));
   }
   @keyframes pulse {
     0%,100% { box-shadow: 0 0 0 0 var(--glow); }
@@ -339,12 +338,64 @@
   <div class="chat-wrap">
     <div class="messages" id="messages">
       <div class="empty-state" id="emptyState">
-              <p>Начните диалог — введите ваш вопрос ниже</p>
+        <div class="empty-icon-svg">
+          <svg width="120" height="120" viewBox="0 0 680 680" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <radialGradient id="bg" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#2a0a4a"/>
+    <stop offset="100%" stop-color="#0d0118"/>
+  </radialGradient>
+  <radialGradient id="braingrad" cx="42%" cy="35%" r="65%">
+    <stop offset="0%" stop-color="#c47de0"/>
+    <stop offset="35%" stop-color="#9040c0"/>
+    <stop offset="70%" stop-color="#6a1a9a"/>
+    <stop offset="100%" stop-color="#3d0a6a"/>
+  </radialGradient>
+  <radialGradient id="braingrad2" cx="55%" cy="40%" r="55%">
+    <stop offset="0%" stop-color="#d090e8"/>
+    <stop offset="50%" stop-color="#9848c8"/>
+    <stop offset="100%" stop-color="#5a1888"/>
+  </radialGradient>
+  <radialGradient id="smokegrad1" cx="50%" cy="80%" r="60%">
+    <stop offset="0%" stop-color="#cc88ff" stop-opacity="0.7"/>
+    <stop offset="100%" stop-color="#8844cc" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#9933cc" stop-opacity="0.5"/>
+    <stop offset="100%" stop-color="#9933cc" stop-opacity="0"/>
+  </radialGradient>
+  <linearGradient id="circleborder" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#dd88ff"/>
+    <stop offset="50%" stop-color="#8833bb"/>
+    <stop offset="100%" stop-color="#dd88ff"/>
+  </linearGradient>
+  <radialGradient id="highlight" cx="38%" cy="30%" r="45%">
+    <stop offset="0%" stop-color="#f0d0ff" stop-opacity="0.35"/>
+    <stop offset="100%" stop-color="#f0d0ff" stop-opacity="0"/>
+  </radialGradient>
+</defs>
+<circle cx="340" cy="340" r="310" fill="url(#bg)"/>
+<ellipse cx="340" cy="340" r="280" fill="url(#glow)" opacity="0.4"/>
+<ellipse cx="340" cy="360" rx="185" ry="165" fill="url(#braingrad)"/>
+<ellipse cx="280" cy="280" rx="65" ry="40" fill="#e0b0f8" opacity="0.12"/>
+<ellipse cx="400" cy="285" rx="62" ry="38" fill="#e0b0f8" opacity="0.1"/>
+<ellipse cx="340" cy="340" rx="180" ry="160" fill="url(#highlight)"/>
+<path d="M305 250 Q294 225 300 200 Q306 176 298 156 Q290 136 298 118 Q304 102 296 86" fill="none" stroke="#9933cc" stroke-width="28" stroke-linecap="round" opacity="0.12"/>
+<path d="M305 250 Q294 225 300 200 Q306 176 298 156 Q290 136 298 118 Q304 102 296 86" fill="none" stroke="#cc77ff" stroke-width="16" stroke-linecap="round" opacity="0.2"/>
+<path d="M342 240 Q350 212 342 186 Q334 163 344 140 Q352 120 342 100 Q334 82 342 64" fill="none" stroke="#bb66ee" stroke-width="20" stroke-linecap="round" opacity="0.18"/>
+<path d="M342 240 Q350 212 342 186 Q334 163 344 140 Q352 120 342 100 Q334 82 342 64" fill="none" stroke="#ddaaff" stroke-width="9" stroke-linecap="round" opacity="0.28"/>
+<path d="M380 252 Q390 226 384 202 Q378 178 386 158 Q394 138 384 118 Q376 100 385 82" fill="none" stroke="#cc88ff" stroke-width="14" stroke-linecap="round" opacity="0.2"/>
+<circle cx="340" cy="340" r="308" fill="none" stroke="url(#circleborder)" stroke-width="4"/>
+<circle cx="340" cy="65" r="4" fill="#ee99ff" opacity="0.7"/>
+<circle cx="296" cy="84" r="3" fill="#dd88ee" opacity="0.6"/>
+<circle cx="385" cy="80" r="3" fill="#dd88ee" opacity="0.6"/>
+          </svg>
+        </div>
         <div class="suggestions">
-          <div class="suggestion-chip" onclick="fillInput(this)">Кто по жизни?</div>
-          <div class="suggestion-chip" onclick="fillInput(this)">Вилкой в глаз или...?</div>
-          <div class="suggestion-chip" onclick="fillInput(this)">Есть базар, надо перетереть</div>
-          <div class="suggestion-chip" onclick="fillInput(this)">Собери братву, сегодня стрелка</div>
+          <div class="suggestion-chip" onclick="fillInput(this)">Как мне улучшить жизнь?</div>
+          <div class="suggestion-chip" onclick="fillInput(this)">Что думаешь о моей идее?</div>
+          <div class="suggestion-chip" onclick="fillInput(this)">Помоги разобраться в ситуации</div>
+          <div class="suggestion-chip" onclick="fillInput(this)">Посоветуй что-нибудь</div>
         </div>
       </div>
     </div>
@@ -460,7 +511,7 @@
         messages: [
           {
             role: 'system',
-            content: 'Ты умный и полезный ассистент UnigAi. Отвечай на русском языке. 
+            content: 'Ты умный и полезный ассистент UnigAi. Отвечай на русском языке.'
           },
           ...conversationHistory
         ]
